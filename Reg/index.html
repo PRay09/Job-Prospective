@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./main.css" />
+    <title>Document</title>
+</head>
+<body>
+  <div>
+    <form class = "task-form">
+        <div class="logbox">
+        <div class="inpb">
+        <label id="number-label" for="email"
+              >Email</label
+            >
+            <input
+              type="text"
+              name="email"
+              id="email"
+              class="form-email"
+              placeholder="Please enter your email"
+            />
+        </div>
+        <div class="inpb">
+          <label id="number-label" for="name"
+            >Name</label
+          >
+          <input
+            type="text"
+            name="name"
+            id="name"
+            class="form-name"
+            placeholder="Please enter your name"
+          />
+        </div>
+        <div class="inpb">  
+        <label id="number-label" for="password"
+            >Password</label
+          >
+        <input
+        type="password"
+        name="password"
+        id="password"
+        class="form-pass"
+        placeholder="Please Enter your Password"
+        />
+        </div>
+        <button type="submit" class="btn submit-btn">submit</button>
+        
+        </div>
+    </form>
+    <div class="form-alert"></div>
+  </div>
+  <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+      integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./browserapp.js"></script>  
+</body>
+</html>
