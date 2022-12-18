@@ -48,7 +48,7 @@ const showJobs = async () => {
       tasksDOM.innerHTML = allJobs
     } catch (error) {
       tasksDOM.innerHTML =
-        '<h5 class="empty-list">There was an error, please try later....</h5>'
+        '<h5 class="empty-list">Username or password does not match</h5>'
         formDOM.style.visibility = 'hidden'
       
       console.log(error)
