@@ -8,6 +8,7 @@ formDOM.addEventListener('submit',(e) => {
     const password = taskInputDOMps.value
     const email = taskInputDOMem.value
     try{
+      var errmsg=''
       axios.post('/api/v1/auth/login',{email:email,
       password:password
       }).then((response) => {
@@ -15,17 +16,21 @@ formDOM.addEventListener('submit',(e) => {
         sessionStorage.name=response.data.user.name;
         console.log(sessionStorage.token)
         console.log(sessionStorage.name)
+        location.href='/jobs'
       }, (error) => {
         delete sessionStorage.token
-        console.log(error);
-      });
+        console.log(error.response.data.msg);
+        errmsg=error.response.data.msg
+        formAlertDOM.style.display= 'block'
+      formAlertDOM.innerHTML = errmsg
+      })
       taskInputDOMem.value= ''
       taskInputDOMps.value= ''
-      location.href='/jobs'
+      
     } catch(error){
       delete sessionStorage.token
       console.log(error)
       formAlertDOM.style.display= 'block'
-      formAlertDOM.innerHTML = `Please Provide valid Email and password.`
+      formAlertDOM.innerHTML = errmsg
     }
 })

@@ -16,6 +16,9 @@ const login = async (req,res) => {
    }
    const user = await User.findOne({email: email})
    //password check
+   if(user==null){
+    throw new UnauthenticatedError(`Email doesn't exist`)
+   }
    const isPassCorr = await user.compPass(password)
    if(!isPassCorr){
     throw new UnauthenticatedError('Invalid Credentials')
