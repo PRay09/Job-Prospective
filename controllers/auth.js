@@ -7,7 +7,23 @@ const register = async (req,res) =>{
     const token = user.createToken()
     res.status(StatusCodes.CREATED).json({user:{name: user.name}, token})
 }
+const search = async (req,res)=>{
+    const searchQuery = req.params.name.toString()
+    const pipeline = [];
+    pipeline.push({
+        $search:{
+            index:"userSearch",
+            text: {
+                query:searchQuery,
+                path: ['name'],
+                fuzzy:{},
+            },
+        },
+    })
 
+    const result = await User.aggregate(pipeline);
+    res.json(result);
+}
 const login = async (req,res) => {
    const {email,password} = req.body
 
@@ -31,4 +47,4 @@ const login = async (req,res) => {
    res.status(StatusCodes.OK).json({user: {name:user.name},token})
 }
 
-module.exports = {login,register}
+module.exports = {login,register,search}

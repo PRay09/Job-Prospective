@@ -6,9 +6,10 @@ const {
     getJob,
     updateJobs,
     removeJobs,
-    createJob} = require('../controllers/jobs')
+    createJob,getAllJobsOther} = require('../controllers/jobs')
 
     router.route('/').post(createJob).get(getAllJobs)
     router.route('/:id').get(getJob).delete(removeJobs).patch(updateJobs)
+    router.route('/visit/:id').get(getAllJobsOther)
 
 module.exports = router

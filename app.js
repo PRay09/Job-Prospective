@@ -16,21 +16,29 @@ const authenticateUser = require('./middleware/authentication')
 
 const authRouter = require ('./routes/auth')
 const jobRouter = require ('./routes/jobs')
+const commRouter = require('./routes/comments')
+
 app.set('trust proxy' , 1);
 app.use(rateLimiter({
   windowMs: 15*60*1000,
   max:100,
 }))
+
 app.use(express.static('./publiic'));
 app.use('/register',express.static('./Reg'))
 app.use('/jobs',express.static('./jobs'))
 app.use('/jobs/singlejob',express.static('./singlejob'))
+app.use('/jobsOther',express.static('./jobsother'))
+app.use('/search',express.static('./search'))
+
 app.use(express.json());
 app.use(cors())
 app.use(helmet())
 app.use(xss())
 app.use('/api/v1/auth',authRouter)
 app.use('/api/v1/jobs',authenticateUser,jobRouter)
+app.use('/api/v1/comments',authenticateUser,commRouter)
+app.use('/api/v1',authRouter)
 // error handler
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
